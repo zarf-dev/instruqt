@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Deploy the Zarf package
+zarf package deploy $(ls "zarf-package-wordpress-amd64"* | head -n 1) --set WORDPRESS_PASSWORD="zarf" --confirm
