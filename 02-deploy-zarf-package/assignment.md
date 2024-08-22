@@ -3,8 +3,21 @@ slug: deploy-zarf-package
 id: q5pvoy9brjr0
 type: challenge
 title: Deploy a Zarf Package
+tabs:
+- id: bcslua7x0xf3
+  title: Terminal
+  type: terminal
+  hostname: ubuntu-zarf
+  workdir: /root/zarf-package
+- id: 1qn3qyizdi6s
+  title: Application
+  type: service
+  hostname: ubuntu-zarf
+  port: 42000
 difficulty: ""
 timelimit: 0
+lab_config:
+  default_layout_sidebar_size: 0
 ---
 Deploy a Zarf Package
 ===
