@@ -4,7 +4,7 @@
 POD_NAME="wordpress"
 
 # Check for the pod
-POD_CHECK=$(kubectl get pods -n wordpress --no-headers custom-columns=":metadata.name" | grep "^$POD_NAME")
+POD_CHECK=$(kubectl get pods -n wordpress --output=name | grep "^$POD_NAME")
 
 # Chek if pod was found
 if [ -z "$POD_CHECK" ]; then
