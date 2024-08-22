@@ -2,11 +2,3 @@
 
 # Change to the package directory
 cd /root/zarf-package/
-
-# Get the needed Zarf package files from GitHub
-wget https://raw.githubusercontent.com/zarf-dev/zarf/main/examples/wordpress/zarf.yaml
-wget https://raw.githubusercontent.com/zarf-dev/zarf/main/examples/wordpress/wordpress-values.yaml
-wget https://raw.githubusercontent.com/zarf-dev/zarf/main/examples/wordpress/connect-services.yaml
-
-# Create package
-zarf package create . --confirm
