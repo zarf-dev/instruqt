@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# move to correct working directory
+cd /root/zarf-package/
+
+# remove current package files
+rm zarf.yaml wordpress-values.yaml connect-services.yaml
+
+# download package files from github
+wget https://raw.githubusercontent.com/zarf-dev/zarf/main/examples/wordpress/zarf.yaml
+wget https://raw.githubusercontent.com/zarf-dev/zarf/main/examples/wordpress/wordpress-values.yaml
+wget https://raw.githubusercontent.com/zarf-dev/zarf/main/examples/wordpress/connect-services.yaml
+
+# create package
+zarf package create . --confirm

@@ -4,11 +4,13 @@ id: haa2sqszamql
 type: challenge
 title: Create a Zarf Package
 tabs:
-- title: Code Editor
+- id: 6bruax7vvpy0
+  title: Code Editor
   type: code
   hostname: zarf-vm
   path: /root/zarf-package/
-- title: Terminal
+- id: 152sjjw8hkd1
+  title: Terminal
   type: terminal
   hostname: zarf-vm
   workdir: /root/zarf-package/
