@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# change to the package directory
+cd /root/zarf-package/

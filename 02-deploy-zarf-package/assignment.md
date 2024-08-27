@@ -4,11 +4,13 @@ id: q5pvoy9brjr0
 type: challenge
 title: Deploy a Zarf Package
 tabs:
-- title: Terminal
+- id: tnnkmegkjyre
+  title: Terminal
   type: terminal
   hostname: zarf-vm
   workdir: /root/zarf-package
-- title: WordPress App
+- id: 1lywpqijrhot
+  title: Application
   type: service
   hostname: zarf-vm
   port: 42000
