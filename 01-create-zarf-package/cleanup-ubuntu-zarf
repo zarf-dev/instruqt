@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# Remove old files
-cd /root/zarf-package/
-rm zarf.yaml wordpress-values.yaml connect-services.yaml

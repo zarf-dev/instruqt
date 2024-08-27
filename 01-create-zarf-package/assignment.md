@@ -3,17 +3,6 @@ slug: create-zarf-package
 id: haa2sqszamql
 type: challenge
 title: Create a Zarf Package
-tabs:
-- id: j6oqbz4lxuyt
-  title: Code Editor
-  type: code
-  hostname: ubuntu-zarf
-  path: /root/zarf-package/
-- id: tdhy3eqnmpgx
-  title: Terminal
-  type: terminal
-  hostname: ubuntu-zarf
-  workdir: /root/zarf-package/
 difficulty: ""
 timelimit: 0
 lab_config:

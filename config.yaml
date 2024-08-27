@@ -1,7 +1,5 @@
 version: "3"
 virtualmachines:
-- name: ubuntu-zarf
-  image: ubuntu-os-cloud/ubuntu-2204-lts
+- name: zarf-vm
+  image: defenseunicorns/zarf
   machine_type: n1-standard-1
-  allow_external_ingress:
-  - high-ports
