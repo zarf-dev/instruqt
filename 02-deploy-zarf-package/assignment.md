@@ -3,6 +3,15 @@ slug: deploy-zarf-package
 id: q5pvoy9brjr0
 type: challenge
 title: Deploy a Zarf Package
+tabs:
+- title: Terminal
+  type: terminal
+  hostname: zarf-vm
+  workdir: /root/zarf-package
+- title: WordPress App
+  type: service
+  hostname: zarf-vm
+  port: 42000
 difficulty: ""
 timelimit: 0
 lab_config:
