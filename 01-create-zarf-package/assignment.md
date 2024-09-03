@@ -3,6 +3,11 @@ slug: create-zarf-package
 id: haa2sqszamql
 type: challenge
 title: Create a Zarf Package
+notes:
+- type: text
+  contents: |-
+    # Create a Zarf Package
+    Zarf packages all the contents of your application into a single OCI artifact that can then be deployed into an airgapped environment. In this tutorial, you'll learn the basics of creating your own Zarf package.
 tabs:
 - id: 6bruax7vvpy0
   title: Code Editor
