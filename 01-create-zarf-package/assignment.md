@@ -6,6 +6,7 @@ title: Create a Zarf Package
 notes:
 - type: text
   contents: |-
+    ![zarf-logo.png](https://play.instruqt.com/assets/tracks/ik0jeigqmuwc/e9d6f48a7da2d12026ba50b58c06d271/assets/zarf-logo.png)
     # Create a Zarf Package
     Zarf packages all the contents of your application into a single OCI artifact that can then be deployed into an airgapped environment. In this tutorial, you'll learn the basics of creating your own Zarf package.
 tabs:
