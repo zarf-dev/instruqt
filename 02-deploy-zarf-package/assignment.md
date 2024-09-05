@@ -41,7 +41,7 @@ kubectl cluster-info
 Deploy the Package
 ===
 
-Let's run the `zarf package deploy` command to kick off the deployment. You will be prompted to enter values for the variables we defined when creating the packge. You can stick to the default values for everythign but the password value.
+Let's run the `zarf package deploy` command to kick off the deployment. You will be prompted to enter values for the variables we defined when creating the packge. You can stick to the default values for everything but the password value.
 ```run
 zarf package deploy
 ```
