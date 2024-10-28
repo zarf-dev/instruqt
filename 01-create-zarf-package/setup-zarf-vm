@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # switch to bash
-chsh -l /bin/bash
+chsh -s /bin/bash root
