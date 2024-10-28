@@ -1,1 +1,4 @@
 #!/bin/bash
+
+# switch to bash
+chsh /bin/bash
