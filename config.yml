@@ -2,4 +2,5 @@ version: "3"
 virtualmachines:
 - name: zarf-vm
   image: defenseunicorns/zarf
-  machine_type: n1-standard-1
+  memory: 4096
+  cpus: 1
