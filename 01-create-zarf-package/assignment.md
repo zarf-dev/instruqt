@@ -47,7 +47,7 @@ In the code editor to the left, you should see an empty `zarf.yaml` file. Let's 
 kind: ZarfPackageConfig # ZarfPackageConfig is the package kind for most normal zarf packages
 metadata:
   name: wordpress       # specifies the name of our package and should be unique and unchanging through updates
-  version: 16.0.4       # (optional) a version we can track as we release updates or publish to a registry
+  version: 26.0.0       # (optional) a version we can track as we release updates or publish to a registry
   description: |        # (optional) a human-readable description of the package that you are creating
     "A Zarf Package that deploys the WordPress blogging and content management platform"
 ```
@@ -66,7 +66,7 @@ components:
     charts:
       - name: wordpress
         url: oci://registry-1.docker.io/bitnamicharts/wordpress
-        version: 16.0.4
+        version: 26.0.0
         namespace: wordpress
         valuesFiles:
           - wordpress-values.yaml
@@ -74,6 +74,7 @@ components:
 Let's take a look at the last line of the components block. It specifies a `valuesFiles` array with a `wordpress-values.yaml` item. This points to the the values files for the WordPress Helm chart that we're using for this package. You can read more about values files in the [Helm docs](https://helm.sh/docs/chart_template_guide/values_files/#helm). In the code editor, you should see the `wordpress-values.yaml` file. open that file and add the following content:
 
 ```yaml
+# We are hard-coding these for now but will make them dynamic in Setting up Variables.
 wordpressUsername: zarf
 wordpressPassword: ""
 wordpressEmail: hello@defenseunicorns.com
@@ -81,14 +82,28 @@ wordpressFirstName: Zarf
 wordpressLastName: The Axolotl
 wordpressBlogName: The Zarf Blog
 
+# All images are temporarily using the legacy Bitnami repos due to:
+# https://github.com/bitnami/containers/issues/83267
+image:
+  repository: bitnamilegacy/wordpress
+  tag: 6.8.2-debian-12-r4
+
 # This value turns on the metrics exporter and thus will require another image.
 metrics:
   enabled: true
+  image:
+    repository: bitnamilegacy/apache-exporter
+    tag: 1.0.10-debian-12-r55
 
 # Sets the WordPress service as a ClusterIP service to not conflict with potential
 # pre-existing LoadBalancer services.
 service:
   type: ClusterIP
+
+mariadb:
+  image:
+    repository: bitnamilegacy/mariadb
+    tag: 12.0.2-debian-12-r0
 ```
 > [!NOTE]
 > We populate any `values.yaml` file(s) at this stage because the `zarf dev find-images` command we will use next will template out this chart to look only for the images we need. These values will be replaced later in the tutorial.
@@ -105,12 +120,11 @@ Running this command in the same directory as your zarf.yaml should result in ou
 
 ```yaml
 components:
-
   - name: wordpress
     images:
-      - docker.io/bitnami/apache-exporter:0.13.3-debian-11-r2
-      - docker.io/bitnami/mariadb:10.11.2-debian-11-r21
-      - docker.io/bitnami/wordpress:6.2.0-debian-11-r18
+      - docker.io/bitnamilegacy/apache-exporter:1.0.10-debian-12-r55
+      - docker.io/bitnamilegacy/mariadb:12.0.2-debian-12-r0
+      - docker.io/bitnamilegacy/wordpress:6.8.2-debian-12-r4
 ```
 Copy the `images` key and array of images from your output into the `wordpress` component we defined in our `zarf.yaml`
 
@@ -120,28 +134,33 @@ We now have a deployable package definition, but it is not very configurable. To
 
 ```yaml
 variables:
+    # The unique name of the variable corresponding to the ###ZARF_VAR_### template
   - name: WORDPRESS_USERNAME
-    description: The username for the WordPress admin account
+    # A human-readable description of the variable shown during prompting
+    description: The username that is used to login to the WordPress admin account
+    # A default value to take if --confirm is used or the user chooses the default prompt
     default: zarf
+    # Whether to prompt for this value interactively if it is not --set on the CLI
     prompt: true
   - name: WORDPRESS_PASSWORD
-    description: The password for the WordPress admin account
+    description: The password that is used to login to the WordPress admin account
     prompt: true
+    # Whether to treat this value as sensitive to keep it out of Zarf logs
     sensitive: true
   - name: WORDPRESS_EMAIL
-    description: The email for the WordPress admin account
+    description: The email that is used for the WordPress admin account
     default: hello@defenseunicorns.com
     prompt: true
   - name: WORDPRESS_FIRST_NAME
-    description: The first name for the WordPress admin account
+    description: The first name that is used for the WordPress admin account
     default: Zarf
     prompt: true
   - name: WORDPRESS_LAST_NAME
-    description: The last name for the WordPress admin account
+    description: The last name that is used for the WordPress admin account
     default: The Axolotl
     prompt: true
   - name: WORDPRESS_BLOG_NAME
-    description: The blog name for the WordPress site
+    description: The blog name that is used for the WordPress admin account
     default: The Zarf Blog
     prompt: true
 ```
