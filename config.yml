@@ -1,6 +1,7 @@
 version: "3"
 virtualmachines:
-- name: zarf-vm
-  image: defenseunicorns/zarf
+- name: kubernetes-vm
+  image: instruqt/k3s-v1-34-2
+  shell: /bin/bash
   memory: 4096
   cpus: 1
