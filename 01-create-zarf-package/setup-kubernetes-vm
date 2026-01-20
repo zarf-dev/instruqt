@@ -2,3 +2,6 @@
 
 # switch to bash
 chsh -s /bin/bash root
+
+# create a blank zarf.yaml
+touch zarf.yaml
