@@ -4,4 +4,4 @@
 chsh -s /bin/bash root
 
 # create a blank zarf.yaml
-touch zarf.yaml
+touch /root/zarf-package/zarf.yaml
