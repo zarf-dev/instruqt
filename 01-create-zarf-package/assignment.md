@@ -32,7 +32,7 @@ Getting Started with Zarf
 
 Zarf is an open source software packaging tool that aims to eliminate the complexity of air gap software delivery.  It does this by providing a way to package and deploy software in a way that is repeatable, secure, and reliable.
 
-In this lab, you'll learn how to create and a very basic Zarf package.
+In this lab, you'll learn how to create a very basic Zarf package.
 
 Creating a Zarf Package
 ===
