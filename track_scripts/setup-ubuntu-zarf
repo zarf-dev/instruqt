@@ -1,14 +1,27 @@
-#!/bin/bash
+#!/bin/bash 
 
-# install and setup zarf
+# Wait for the Instruqt host bootstrap to finish
+until [ -f /opt/instruqt/bootstrap/host-bootstrap-completed ]
+do
+    sleep 1
+done
+
+# Wait for the Kubernetes API server to become available
+while ! curl --silent --fail --output /dev/null http://localhost:8001/api 
+do
+    sleep 1 
+done
+
+# Enable bash completion for kubectl
+echo "source /usr/share/bash-completion/bash_completion" >> /root/.bashrc
+echo "complete -F __start_kubectl k" >> /root/.bashrc
+
+# Mkdir
+mkdir /root/zarf-package
+
+# Install Zarf
 ZARF_VERSION=$(curl -sIX HEAD https://github.com/zarf-dev/zarf/releases/latest | grep -i ^location: | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+')
+
 curl -sL "https://github.com/zarf-dev/zarf/releases/download/${ZARF_VERSION}/zarf_${ZARF_VERSION}_Linux_amd64" -o zarf
 chmod +x zarf
-sudo mv zarf /usr/local/bin/zarf
-zarf tools download-init
-zarf init --components k3s --confirm
-
-# install kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
+mv zarf /usr/local/bin/
