@@ -7,12 +7,12 @@ tabs:
 - id: tnnkmegkjyre
   title: Terminal
   type: terminal
-  hostname: zarf-vm
+  hostname: kubernetes-vm
   workdir: /root/zarf-package
 - id: 1lywpqijrhot
   title: Application
   type: service
-  hostname: zarf-vm
+  hostname: kubernetes-vm
   port: 42000
 difficulty: ""
 timelimit: 0
