@@ -13,12 +13,12 @@ tabs:
 - id: 6bruax7vvpy0
   title: Code Editor
   type: code
-  hostname: zarf-vm
+  hostname: kubernetes-vm
   path: /root/zarf-package/
 - id: 152sjjw8hkd1
   title: Terminal
   type: terminal
-  hostname: zarf-vm
+  hostname: kubernetes-vm
   workdir: /root/zarf-package/
 difficulty: ""
 timelimit: 0

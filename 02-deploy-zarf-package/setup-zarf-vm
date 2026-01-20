@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# switch to bash
-chsh -s /bin/bash root
-
-# change to the package directory
-cd /root/zarf-package/
