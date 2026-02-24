@@ -3,6 +3,7 @@ slug: create-zarf-package
 id: haa2sqszamql
 type: challenge
 title: Create a Zarf Package
+teaser: Create a zarf package containing all artifacts and dependencies for portability.
 notes:
 - type: text
   contents: |-
