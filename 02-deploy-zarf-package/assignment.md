@@ -23,7 +23,7 @@ enhanced_loading: null
 Deploy a Zarf Package
 ===
 
-In the last lab, you learned how to create a Zarf package. Now, you'll learn how to deploy that package onto a local air-gapped Kubernetes cluster. Let's get started!
+In the last lab, you learned how to create a Zarf package. Now, you'll learn how to deploy that package onto a local airgapped Kubernetes cluster. Let's get started!
 
 
 Inspect the Environment
@@ -48,22 +48,26 @@ zarf package deploy
 ```
 To have a look at what Zarf deployed as part of the package, you can run:
 ```run
-kubectl get all -n wordpress
+kubectl get all -n argocd
 ```
-Here you can see the various elements that were part of the WordPress Helm chart that we included as a component in our Zarf package.
+Here you can see the various elements that were part of the ArgoCD Helm chart that we included as a component in our Zarf package.
 
 
-View the WordPress Blog
+View the ArgoCD Dashboard
 ===
 
-As you might have previously read, Zarf is designed to work in environments with unique connectivity restrictions. In this case, we don't have any immediate way to access the application package we just deployed. To do this, we'll setup a port forward using `kubectl`:
-```run
-kubectl port-forward -n wordpress service/wordpress-connect-blog 42000:8080 --address 0.0.0.0
-```
-Once this command is run and the port forward is started, you should be able to navigate to the `Application` tab, and see the example blog.
+As you might have previously read, Zarf is designed to work in environments with unique connectivity restrictions. In this case, we don't have any immediate way to access the application package we just deployed. To do this, we'll setup a port forward using the service connect label/annotation we added during the package creation:
 
+```run
+zarf connect argocd
+```
+This is the same as running a port forward with `kubectl`
+```run
+kubectl port-forward -n argocd service/argocd-server 42000:8080 --address 0.0.0.0
+```
+Once the port forward is started, you should be able to navigate to the `Application` tab, and see the example blog.
 
 Conclusion
 ===
 
-Congratulations! You've now built and depolyed a simple Zarf package! There's a lot more that Zarf can do from here to help make software delivery into air-gapped environments easier. To see some more examples, check out [this folder](https://github.com/zarf-dev/zarf/tree/main/examples) in the Zarf repo. You can also learn more by reading through the [Zarf docs](https://docs.zarf.dev).
+Congratulations! You've now built and depolyed a simple Zarf package! There's a lot more that Zarf can do from here to help make software delivery into airgapped environments easier. To see some more examples, check out [this folder](https://github.com/zarf-dev/zarf/tree/main/examples) in the Zarf repo. You can also learn more by reading through the [Zarf docs](https://docs.zarf.dev).
