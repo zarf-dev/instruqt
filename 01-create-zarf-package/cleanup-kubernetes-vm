@@ -2,4 +2,4 @@
 
 # remove old files
 cd /root/zarf-package/
-rm zarf.yaml wordpress-values.yaml connect-services.yaml
+rm zarf.yaml baseline-values.yaml

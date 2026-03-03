@@ -4,14 +4,14 @@
 cd /root/zarf-package/
 
 # define the pod name or pattern to search for
-POD_NAME="wordpress"
+POD_NAME="argocd"
 
 # check for the pod
-POD_CHECK=$(kubectl get pods -n wordpress --output=name | grep "$POD_NAME")
+POD_CHECK=$(kubectl get pods -n argocd --output=name | grep "$POD_NAME")
 
 # check if pod was found
 if [ -z "$POD_CHECK" ]; then
-    fail-message "WordPress deployment not found"
+    fail-message "ArgoCD deployment not found"
 else
-    echo "WordPress deployment found"
+    echo "ArgoCD deployment found"
 fi

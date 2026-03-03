@@ -4,11 +4,11 @@
 cd /root/zarf-package/
 
 # define the file pattern
-file_pattern="zarf-package-wordpress-amd64*"
+file_pattern="zarf-package-argocd-amd64*"
 
 # check if any file matching the pattern exists
 if ls $file_pattern 1> /dev/null 2>&1; then
-    echo "A file matching the pattern 'zarf-package-wordpress-amd64*' was found."
+    echo "A file matching the pattern 'zarf-package-argocd-amd64*' was found."
 else
     fail-message "Zarf package file not found."
 fi
