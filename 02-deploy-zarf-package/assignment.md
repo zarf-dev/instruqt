@@ -35,7 +35,7 @@ ls
 ```
 There is also a local Kubernetes cluster running using [K3s](https://k3s.io). Zarf includes K3s as an optional helper component that can be used when deploying to single air-gapped devices. You can learn more about the optional components in the [Zarf docs](https://docs.zarf.dev/ref/init-package/#optional-components). To inspect the details of the local Kubernetes cluster, you can run:
 ```run
-kubectl cluster-info
+zarf tools kubectl cluster-info
 ```
 
 
@@ -44,11 +44,11 @@ Deploy the Package
 
 Let's run the `zarf package deploy` command to kick off the deployment. You will be prompted to enter values for the variables we defined when creating the packge. You can stick to the default values for everything but the password value.
 ```run
-zarf package deploy
+zarf package deploy zarf-package-argocd-amd64-9.4.4.tar.zst
 ```
 To have a look at what Zarf deployed as part of the package, you can run:
 ```run
-kubectl get all -n argocd
+zarf. tools kubectl get all -n argocd
 ```
 Here you can see the various elements that were part of the ArgoCD Helm chart that we included as a component in our Zarf package.
 
@@ -59,15 +59,15 @@ View the ArgoCD Dashboard
 As you might have previously read, Zarf is designed to work in environments with unique connectivity restrictions. In this case, we don't have any immediate way to access the application package we just deployed. To do this, we'll setup a port forward using the service connect label/annotation we added during the package creation:
 
 ```run
-zarf connect argocd
+zarf connect argocd --local-port 42000
 ```
 This is the same as running a port forward with `kubectl`
 ```run
-kubectl port-forward -n argocd service/argocd-server 42000:8080 --address 0.0.0.0
+kubectl port-forward -n argocd service/argocd-baseline-server 42000:80 --address 0.0.0.0
 ```
 Once the port forward is started, you should be able to navigate to the `Application` tab, and see the example blog.
 
 Conclusion
 ===
 
-Congratulations! You've now built and depolyed a simple Zarf package! There's a lot more that Zarf can do from here to help make software delivery into airgapped environments easier. To see some more examples, check out [this folder](https://github.com/zarf-dev/zarf/tree/main/examples) in the Zarf repo. You can also learn more by reading through the [Zarf docs](https://docs.zarf.dev).
+Congratulations! You've now built and deployed a simple Zarf package! There's a lot more that Zarf can do from here to help make software delivery into airgapped environments easier. To see some more examples, check out [this folder](https://github.com/zarf-dev/zarf/tree/main/examples) in the Zarf repo. You can also learn more by reading through the [Zarf docs](https://docs.zarf.dev).

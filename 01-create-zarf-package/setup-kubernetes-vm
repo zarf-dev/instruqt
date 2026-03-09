@@ -5,3 +5,4 @@ chsh -s /bin/bash root
 
 # create a blank zarf.yaml
 touch /root/zarf-package/zarf.yaml
+touch /root/zarf-package/baseline-values.yaml

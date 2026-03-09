@@ -4,14 +4,11 @@
 cd /root/zarf-package/
 
 # # remove current package files
-# rm zarf.yaml wordpress-values.yaml connect-services.yaml
+rm zarf.yaml baseline-values.yaml
 
-# # download package files from github
-# wget https://raw.githubusercontent.com/zarf-dev/zarf/main/examples/wordpress/zarf.yaml
-# wget https://raw.githubusercontent.com/zarf-dev/zarf/main/examples/wordpress/wordpress-values.yaml
-# wget https://raw.githubusercontent.com/zarf-dev/zarf/main/examples/wordpress/connect-services.yaml
-
-echo "TODO(solve script): should this download a pre-authored version of the tutorial files?"
+# download package files from github
+wget https://https://raw.githubusercontent.com/zarf-dev/tutorial/main/01-create-zarf-package/solution/zarf.yaml
+wget https://https://raw.githubusercontent.com/zarf-dev/tutorial/main/01-create-zarf-package/solution/baseline-values.yaml
 
 # create package
 zarf package create . --confirm

@@ -116,24 +116,18 @@ components:
 ```
 Copy the `images` key and array of images from your output into the `argo-cd` component we defined in our `zarf.yaml`
 
-Set Up Variables
-===
-We now have a deployable package definition, but it is not very configurable. To make it more flexible, we need to add some variables to the `zarf.yaml` file. Add this content to the bottom of the file below everything else you've added up to this point:
-
-TODO: do we want to include variables?
-
-Zarf can template chart values, manifests, included text files and more.
-
-> [!WARNING]
-> When dealing with sensitive values in Zarf it is strongly recommended to not include them directly inside of a Zarf Package and to only define them at deploy-time. You should also be aware of where you are using these values as they may be printed in actions you create or files that you place on disk.
-
 Set Up a Zarf Connect Service
 ===
 As-is, our package could be configured to interface with an ingress provider to provide access to our argocd dashboard, but this may not be desired for every service, particularly those that provide a backend for other frontend services. To help with debugging, Zarf allows you to specify Zarf Connect Services that will be displayed after package deployment to quickly connect into our deployed application.
 
 For this package we will leverage existing chart values to provide discoverable connect endpoints. These are normal Kubernetes services with special labels and annotations that Zarf watches for. Add the following content to the  `baseline-values.yaml` file:
 ```yaml
-
+server:
+  service:
+    labels:
+      zarf.dev/connect-name: argocd
+    annotations:
+      zarf.dev/connect-description: "The Argocd UI service"
 ```
 
 Create the Package
