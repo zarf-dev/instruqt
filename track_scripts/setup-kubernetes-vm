@@ -26,6 +26,6 @@ curl -sL "https://github.com/zarf-dev/zarf/releases/download/${ZARF_VERSION}/zar
 chmod +x zarf
 mv zarf /usr/local/bin/
 
-# # initialize    
-# zarf tools download-init
-# zarf init --components=git-server --confirm
+# initialize    
+zarf tools download-init
+zarf init --components=git-server --confirm -l debug
