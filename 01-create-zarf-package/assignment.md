@@ -50,6 +50,7 @@ metadata:
   name: argocd       # specifies the name of our package and should be unique and unchanging through updates
   version: 9.4.4      # (optional) a version we can track as we release updates or publish to a registry
   description: "A Zarf Package that deploys the ArgoCD platform"
+
 ```
 Add the ArgoCD Baseline Component
 ===
@@ -60,7 +61,7 @@ Let's add the following ArgoCD component to the bottom of our `zarf.yaml` below 
 ```yaml
 components:
   - name: argocd # specifies the name of our component and should be unique and unchanging through updates
-	  description: "Deploys the ArgoCD packaged chart into the cluster"
+    description: "Deploys the ArgoCD packaged chart into the cluster" # (optional) component description
     required: true # (optional) sets the component as 'required' so that it is always deployed
     charts:
       - name: argo-cd
@@ -70,6 +71,7 @@ components:
         releaseName: argocd-baseline
         valuesFiles:
           - baseline-values.yaml
+
 ```
 Let's take a look at the last line of the components block. It specifies a `valuesFiles` array with a `baseline-values.yaml` item. This points to the the values files for the ArgoCD Helm chart that we're using for this package. You can read more about values files in the [Helm docs](https://helm.sh/docs/chart_template_guide/values_files/#helm). In the code editor, you should see the `baseline-values.yaml` file. open that file and add the following content:
 
@@ -86,6 +88,7 @@ notifications:
 redis:
   image:
     repository: docker.io/library/redis
+
 ```
 > [!NOTE]
 > We populate any `values.yaml` file(s) at this stage because the `zarf dev find-images` command we will use next will template out this chart to look only for the images we need. These values will be replaced later in the tutorial.

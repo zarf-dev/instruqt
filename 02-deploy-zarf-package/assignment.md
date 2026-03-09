@@ -48,7 +48,7 @@ zarf package deploy zarf-package-argocd-amd64-9.4.4.tar.zst
 ```
 To have a look at what Zarf deployed as part of the package, you can run:
 ```run
-zarf. tools kubectl get all -n argocd
+zarf tools kubectl get all -n argocd
 ```
 Here you can see the various elements that were part of the ArgoCD Helm chart that we included as a component in our Zarf package.
 

@@ -6,3 +6,6 @@ chsh -s /bin/bash root
 # create a blank zarf.yaml
 touch /root/zarf-package/zarf.yaml
 touch /root/zarf-package/baseline-values.yaml
+
+zarf tools download-init
+zarf init --components=git-server --confirm --timeout 3m -l debug
