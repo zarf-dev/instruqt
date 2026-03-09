@@ -3,5 +3,7 @@
 # switch to bash
 chsh -s /bin/bash root
 
+zarf tools 
+
 # change to the package directory
 cd /root/zarf-package/
