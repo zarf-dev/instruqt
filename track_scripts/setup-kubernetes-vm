@@ -28,4 +28,4 @@ mv zarf /usr/local/bin/
 
 # initialize    
 zarf tools download-init
-zarf init --components=git-server --confirm -l debug
+zarf init --components=git-server --confirm -l debug --timeout 1m
