@@ -25,7 +25,3 @@ ZARF_VERSION=$(curl -sIX HEAD https://github.com/zarf-dev/zarf/releases/latest |
 curl -sL "https://github.com/zarf-dev/zarf/releases/download/${ZARF_VERSION}/zarf_${ZARF_VERSION}_Linux_amd64" -o zarf
 chmod +x zarf
 mv zarf /usr/local/bin/
-
-# initialize    
-zarf tools download-init
-zarf init --components=git-server --confirm -l debug --timeout 1m
