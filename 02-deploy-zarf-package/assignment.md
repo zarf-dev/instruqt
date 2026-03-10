@@ -53,13 +53,23 @@ zarf tools kubectl get all -n argocd
 Here you can see the various elements that were part of the ArgoCD Helm chart that we included as a component in our Zarf package.
 
 
+Retrieve the Admin Password
+===
+
+Before we access the ArgoCD Dashboard, we need to retrieve the automatically generated admin password:
+
+```run
+zarf tools kubectl -n argocd get secret argocd-initial-admin-secret \
+          -o jsonpath="{.data.password}" | base64 -d; echo
+```
+
 View the ArgoCD Dashboard
 ===
 
 As you might have previously read, Zarf is designed to work in environments with unique connectivity restrictions. In this case, we don't have any immediate way to access the application package we just deployed. To do this, we'll setup a port forward using the service connect label/annotation we added during the package creation:
 
 ```run
-zarf connect argocd --local-port 42000
+zarf connect argocd --local-port 42000 --address 0.0.0.0
 ```
 This is the same as running a port forward with `kubectl`
 ```run
@@ -70,4 +80,4 @@ Once the port forward is started, you should be able to navigate to the `Applica
 Conclusion
 ===
 
-Congratulations! You've now built and deployed a simple Zarf package! There's a lot more that Zarf can do from here to help make software delivery into airgapped environments easier. To see some more examples, check out [this folder](https://github.com/zarf-dev/zarf/tree/main/examples) in the Zarf repo. You can also learn more by reading through the [Zarf docs](https://docs.zarf.dev).
+Congratulations! You've now built and deployed a simple Zarf package! There's a lot more that Zarf can do from here to help make software delivery into airgapped environments easier. To see some more examples, check out [more examples](https://github.com/zarf-dev/zarf/tree/main/examples) in the Zarf repo. You can also learn more by reading through the [Zarf docs](https://docs.zarf.dev).
