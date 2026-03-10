@@ -76,6 +76,10 @@ components:
 Let's take a look at the last line of the components block. It specifies a `valuesFiles` array with a `baseline-values.yaml` item. This points to the the values files for the ArgoCD Helm chart that we're using for this package. You can read more about values files in the [Helm docs](https://helm.sh/docs/chart_template_guide/values_files/#helm). In the code editor, you should see the `baseline-values.yaml` file. open that file and add the following content:
 
 ```yaml
+configs:
+  params:
+    server.insecure: true
+
 redis-ha:
   enabled: false
 

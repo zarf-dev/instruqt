@@ -29,11 +29,11 @@ In the last lab, you learned how to create a Zarf package. Now, you'll learn how
 Inspect the Environment
 ===
 
-We've only got a terminal window this time around, but you can see the Zarf package built in the last tutorial by listing the contents of the directory:
+We have two windows this time around, the terminal and the application windows. You can see the Zarf package built in the last tutorial by listing the contents of the directory:
 ```run
 ls
 ```
-There is also a local Kubernetes cluster running using [K3s](https://k3s.io). Zarf includes K3s as an optional helper component that can be used when deploying to single air-gapped devices. You can learn more about the optional components in the [Zarf docs](https://docs.zarf.dev/ref/init-package/#optional-components). To inspect the details of the local Kubernetes cluster, you can run:
+There is also a local Kubernetes cluster running using [K3s](https://k3s.io). Zarf can include K3s as an optional helper component that can be used when deploying to single air-gapped devices. You can learn more about the optional components in the [Zarf docs](https://docs.zarf.dev/ref/init-package/#optional-components). To inspect the details of the local Kubernetes cluster, you can run:
 ```run
 zarf tools kubectl cluster-info
 ```
@@ -42,7 +42,7 @@ zarf tools kubectl cluster-info
 Deploy the Package
 ===
 
-Let's run the `zarf package deploy` command to kick off the deployment. You will be prompted to enter values for the variables we defined when creating the packge. You can stick to the default values for everything but the password value.
+Let's run the `zarf package deploy` command to kick off the deployment. You will be prompted to confirm whether you want to deploy the intended package contents.
 ```run
 zarf package deploy zarf-package-argocd-amd64-9.4.4.tar.zst
 ```
