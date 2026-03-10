@@ -75,7 +75,9 @@ This is the same as running a port forward with `kubectl`
 ```run
 kubectl port-forward -n argocd service/argocd-baseline-server 42000:80 --address 0.0.0.0
 ```
-Once the port forward is started, you should be able to navigate to the `Application` tab, and see the example blog.
+Once the port forward is started, you should be able to navigate to the `Application` tab, and see the dashboard.
+
+Login to the dashboard with username `admin` and the retrieved password from the previous step.
 
 Conclusion
 ===
