@@ -7,8 +7,8 @@ cd /root/zarf-package/
 rm zarf.yaml baseline-values.yaml
 
 # download package files from github
-wget https://https://raw.githubusercontent.com/zarf-dev/tutorial/main/01-create-zarf-package/solution/zarf.yaml
-wget https://https://raw.githubusercontent.com/zarf-dev/tutorial/main/01-create-zarf-package/solution/baseline-values.yaml
+wget https://raw.githubusercontent.com/zarf-dev/tutorial/main/01-create-zarf-package/solution/zarf.yaml
+wget https://raw.githubusercontent.com/zarf-dev/tutorial/main/01-create-zarf-package/solution/baseline-values.yaml
 
 # create package
 zarf package create . --confirm
