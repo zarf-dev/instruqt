@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# switch to bash
+chsh -s /bin/bash root
+
+cd /root/zarf-package
+
+cat > zarf.yaml << 'EOF'
+kind: ZarfPackageConfig # ZarfPackageConfig is the package kind for most normal zarf packages
+metadata:
+  name: changeme       # specifies the name of our package; should be unique and stable across updates
+  version: 0.0.1     # (optional) a version to track as you release updates or publish to a registry
+  description: |     # (optional) a human-readable description of the package
+    "A Zarf Package that deploys the ArgoCD platform"
+
+components:
+  - name: argocd # specifies the name of our component; should be unique and stable across updates
+    description: | # (optional) a human-readable description of the component
+      "Deploys the ArgoCD packaged chart into the cluster"
+    required: true # ensures this component is always deployed
+    charts:
+      - name: chart-name # as it appears in the registry
+        version: 0.0.1 # chart version
+        namespace: changeme
+        url: helm chart registry
+        releaseName: changeme
+        valuesFiles:
+          - optional-values.yaml
+    images:
+      - registry.com/my-image:tag
+EOF
