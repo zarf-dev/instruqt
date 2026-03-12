@@ -1,16 +1,20 @@
 ---
-slug: k018pm
+slug: inspect-zarf-package
+id: 8kahsfqxpzxj
 type: challenge
 title: Inspect a Zarf Package
 teaser: Understand the composition of a Zarf Package on the filesystem and deployed
   to a cluster
 tabs:
-- title: Terminal
+- id: ffiresxmfuq1
+  title: Terminal
   type: terminal
   hostname: kubernetes-vm
   workdir: /root/zarf-package
 difficulty: basic
 timelimit: 0
+lab_config:
+  default_layout_sidebar_size: 0
 enhanced_loading: false
 ---
 Inspecting a Zarf Package
@@ -130,7 +134,7 @@ Not shown - but if you had included documentation in the package it could be ret
 
 Inspect a Deployed Package
 ===
-Zarf is not only packaging applications into determinstic archives - it also deploys - as we performed previously. It does so while keeping track of the state. Enabling users to identify which versions of application(s) they have deployed as well as control inspecting or removing them.
+Zarf is not only packaging applications into determinstic archives - it also performs the deploy as we performed previously. It does so while keeping track of the state. Enabling users to identify which versions of application(s) they have deployed as well as inspecting or removing them.
 
 To inspect deploy packages, we can first list them:
 ```run
@@ -142,6 +146,29 @@ From here, we can use a subset of the inspect commands currently available.
 zarf package inspect definition argocd
 ```
 Will output the zarf definition (manifest) of the deployed package.
+
+If we want to see our Images from a package
+```run
+zarf package inspect images argocd
+```
+
+Note: currently Zarf does not store SBOMs or values-files for the deployed packages.
+
+Remove a Package from the Cluster
+===
+Given that we store the deployed package state, we have the option to continue to upgrade those package applications in-place as well as remove a package and all of its applications.
+
+Confirm the `argocd` package is still deployed:
+```run
+zarf package list
+```
+
+To remove the `argocd` package from the cluster:
+```run
+zarf package remove argocd
+```
+
+This will prompt you to remove the package - otherwise you can use the `--confirm` flag to auto-confirm removal.
 
 
 
