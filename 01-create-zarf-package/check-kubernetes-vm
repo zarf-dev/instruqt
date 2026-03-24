@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # change to package directory
 cd /root/zarf-package/
 
@@ -12,3 +11,15 @@ if ls $file_pattern 1> /dev/null 2>&1; then
 else
     fail-message "Zarf package file not found."
 fi
+
+# check if zarf.yaml exists
+if [ ! -f "zarf.yaml" ]; then
+    fail-message "zarf.yaml not found."
+fi
+
+# check that components.images exists in at least one component
+if ! zarf tools yq e '[.components[] | has("images")] | any' zarf.yaml | grep -q 'true'; then
+    fail-message "zarf.yaml does not contain images in any component."
+fi
+
+echo "zarf.yaml exists and contains component images."
