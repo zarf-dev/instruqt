@@ -89,6 +89,10 @@ dex:
 notifications:
   enabled: false
 
+redis:
+  image:
+    repository: docker.io/library/redis
+
 ```
 > [!NOTE]
 > We populate any `values.yaml` file(s) at this stage because the `zarf dev find-images` command we will use next will template out this chart to look only for the images we need. These values will be replaced later in the tutorial.
@@ -107,7 +111,7 @@ Running this command in the same directory as your zarf.yaml should result in ou
 components:
   - name: argocd
     images:
-      - ecr-public.aws.com/docker/library/redis:8.2.3-alpine
+      - docker.io/library/redis:8.2.3-alpine
       - quay.io/argoproj/argocd:v3.3.2
       # Cosign artifacts for images - argocd
       - quay.io/argoproj/argocd:sha256-5882f28f7aaeaac397949c4511fdc1ad66c1260af44166ccf7e57aca3d7b9797.att
@@ -134,7 +138,7 @@ Once you have followed the above steps, you should now have a `zarf.yaml` file t
 
 Creating this package is as simple as running the `zarf package create` command within the same directory as our `zarf.yaml` file. Zarf will pull down all of the resources and bundle them into a package tarball.
 ```run
-zarf package create .
+zarf package create --registry-override docker.io=docker.registry.instruqt.io .
 ```
 This will create a zarf package in the current directory with a package name that looks something like `zarf-package-argocd-amd64-9.4.4.tar.zst`, although it might be slightly different depending on your system architecture. You can have a look at the file by listing the contents of the current directory:
 ```run
