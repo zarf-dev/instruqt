@@ -1,19 +1,24 @@
 ---
 slug: package-playground
+id: bvxofwbmte17
 type: challenge
 title: Zarf Package Playground
 teaser: Playground environment for self-exploration of package creation
 tabs:
-- title: Terminal
+- id: vpxpcwaxhddn
+  title: Terminal
   type: terminal
   hostname: kubernetes-vm
   workdir: /root/zarf-package
-- title: Editor
+- id: qshphebyjcvx
+  title: Editor
   type: code
   hostname: kubernetes-vm
   path: /root/zarf-package
 difficulty: basic
 timelimit: 0
+lab_config:
+  default_layout_sidebar_size: 0
 enhanced_loading: false
 ---
 Welcome! If you've made it this far you have now:

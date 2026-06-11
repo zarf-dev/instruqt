@@ -89,10 +89,6 @@ dex:
 notifications:
   enabled: false
 
-redis:
-  image:
-    repository: docker.io/library/redis
-
 ```
 > [!NOTE]
 > We populate any `values.yaml` file(s) at this stage because the `zarf dev find-images` command we will use next will template out this chart to look only for the images we need. These values will be replaced later in the tutorial.
@@ -111,7 +107,7 @@ Running this command in the same directory as your zarf.yaml should result in ou
 components:
   - name: argocd
     images:
-      - docker.io/library/redis:8.2.3-alpine
+      - ecr-public.aws.com/docker/library/redis:8.2.3-alpine
       - quay.io/argoproj/argocd:v3.3.2
       # Cosign artifacts for images - argocd
       - quay.io/argoproj/argocd:sha256-5882f28f7aaeaac397949c4511fdc1ad66c1260af44166ccf7e57aca3d7b9797.att
